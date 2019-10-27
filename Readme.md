@@ -202,4 +202,8 @@ Digital Assistant utilizes a Web Software Development Kit (SDK) to handle the he
 
 17. After that finishes choose 1) for Boot this domain. Your ODA Web SDK is now setup.
 
-## Step 10: 
+## Step 10: Setting Up the Application Services
+
+Now we get to do a little bit of coding! PSFT uses a language called PeopleCode (quite original if I say so myself) to express business logic. We're going to need to use that Application Designer client to actually set that up with our sample Expense retrieval. 
+
+1. Open your Windows environment. 

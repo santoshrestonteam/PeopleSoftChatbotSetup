@@ -88,4 +88,8 @@ In order to work with Application Designer we need Oracle Database of the same v
 
 2. Follow the steps for installing the database. You'll need to create a new user in the Windows environment WITHOUT admin privileges to install the db. Additionally, if you named your instance with special characters the installation won't work. 
 
-3. Wait for the install to finish, once it does you'll be able to navigate to C:\app\oracle\product\12.1.0\dbhome_2\NETWORK and edit the tnsnames.ora file there and add in the entry you placed in the other tnsnames.ora file you have in the Application Designer folder.
+3. Wait for the install to finish, once it does you'll be able to navigate to ORACLE_HOME\network\admin (For me it was C:\app\oracle\product\12.1.0\dbhome_2\NETWORK\ADMIN, if for some reason your directory differs you can perform a search in File Explorer for tnsnames.ora) and edit the tnsnames.ora file there and add in the entry for the PSFT database connection you placed in the other tnsnames.ora file you have in the Application Designer folder. Do not delete the existing information in the file.
+
+## Step 5: Run the Installer for Application Designer
+
+Now you're going to 

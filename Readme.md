@@ -100,15 +100,15 @@ Now you're going to actually setup the Application Designer client so you can st
 
 3. The installation for Application Designer will ask a series of questions. Here's what you should put:
 
-	Deploy PeopleTools client? Y
-	Database Platform: 1 (Oracle)
-	Pshome: use the default
-	Config peopletools client? Y
-	Database name – use the name of the PSFT database in Step 3 Part 7
-	Server name – example: instance123.sub123.sample.oraclevcn.com
-	userId – VP1 or PS (confirm this by logging into your PSFT instance through the web)
-	connect id: people
-	connect password: the password you specified for connect_pwd in the user script when provisioning your PSFT instance
-	PeopleTools Client deployment: 3
-	Choose “n” for the next 4 questions to avoid any installation complications. 
+	a. Deploy PeopleTools client? Y
+	b. Database Platform: 1 (Oracle)
+	c. Pshome: use the default
+	d. Config peopletools client? Y
+	e. Database name – use the name of the PSFT database in Step 3 Part 7
+	f. Server name – example: instance123.sub123.sample.oraclevcn.com
+	g. userId – VP1 or PS (confirm this by logging into your PSFT instance through the web)
+	h. connect id: people
+	i. connect password: the password you specified for connect_pwd in the user script when provisioning your PSFT instance
+	j. PeopleTools Client deployment: 3
+	k. Choose “n” for the next 4 questions to avoid any installation complications. 
 

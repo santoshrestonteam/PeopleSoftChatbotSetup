@@ -59,7 +59,7 @@ This video guide does a fairly good job of explaining the steps, but I'll go int
 
 5. Download WinSCP from https://winscp.net/eng/index.php and install. After installation open the program. For the host name place the PSFT public IP, for username put "opc" without quotations, and leave password blank. Click Advanced > Authentication > and then for the Private Key file choose your private key.
 
-6. You'll now be able to view your files in the PSFT instance. Navigate to /opt/oracle/psft/pt/tools_client and then download the files/folders in this directory to your Windows environment into any directory you like. I used the Desktop.
+6. You'll now be able to view your files in the PSFT instance. Navigate to the tools client at /opt/oracle/psft/pt/tools_client and then download the files/folders in this directory to your Windows environment into any directory you like. I used the Desktop.
 
 7. You'll now edit the tnsnames.ora file to reflect your PSFT database information. Go to your PSFT site and open the Navbar icon on the top right and hit Navigator on the bar. Navigate to PeopleTools > LifeCycle Tools > Update Manager > About PeopleSoft Image. Keep this page open we'll need it in a bit.
 
@@ -92,4 +92,23 @@ In order to work with Application Designer we need Oracle Database of the same v
 
 ## Step 5: Run the Installer for Application Designer
 
-Now you're going to 
+Now you're going to actually setup the Application Designer client so you can start working on your projects!
+
+1. Open Command Prompt as Administrator and navigate on your Windows environment to the location you downloaded the tools client files and folders. 
+
+2. Run the command SetupPTClient –t –l.
+
+3. The installation for Application Designer will ask a series of questions. Here's what you should put:
+
+	Deploy PeopleTools client? Y
+	Database Platform: 1 (Oracle)
+	Pshome: use the default
+	Config peopletools client? Y
+	Database name – use the name of the PSFT database in Step 3 Part 7
+	Server name – example: instance123.sub123.sample.oraclevcn.com
+	userId – VP1 or PS (confirm this by logging into your PSFT instance through the web)
+	connect id: people
+	connect password: the password you specified for connect_pwd in the user script when provisioning your PSFT instance
+	PeopleTools Client deployment: 3
+	Choose “n” for the next 4 questions to avoid any installation complications. 
+

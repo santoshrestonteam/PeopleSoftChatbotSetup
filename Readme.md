@@ -268,3 +268,7 @@ Here we are actually going to setup the Wizard in the PSFT to let us use the cod
 10. Hit next, select "Yes" for multi row output, "No" for multi row input.
 
 11. Hit next and determine your result states:
+
+![Result States](https://github.com/restonappdev/PeopleSoftChatbotSetup/blob/master/PeoplesoftResultState.png?raw=true)
+
+

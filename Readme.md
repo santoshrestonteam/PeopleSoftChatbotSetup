@@ -245,5 +245,26 @@ Now we get to do a little bit of coding! PSFT uses a language called PeopleCode 
 ```
 
 ## Step 11: Working with Application Services Wizard
+Here we are actually going to setup the Wizard in the PSFT to let us use the code we added to the Application Services.
 
-1. In the PSFT web application open navigator and go to PeopleTools > Security > Roles 
+1. Navigate in PSFT web to Navigator>PeopleTools>Integration Broker>Web Services>Application Services>Application Services
+
+2. You'll see a few predefined services for chatbots
+
+3. Click "Create Application Service". Give an App Service ID such as EX_CHATBOT_GET_REPORTS
+
+4. The service type will be master, enter in a service URL such as expense.GetExpenseReports
+
+5. Give a good description of what this services will provide
+
+6. Root package ID: Search for the app package you setup in PSFT Application Designer
+
+7. The path will be a colon, ':', without quotes
+
+8. Application Class ID will be GetExpenseReports
+
+9. Service cache support: none and status: active
+
+10. Hit next, select "Yes" for multi row output, "No" for multi row input.
+
+11. Hit next and determine your result states:

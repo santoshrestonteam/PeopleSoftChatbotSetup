@@ -158,11 +158,19 @@ To ensure your chatbot is secure and safe you'll need to specify a handful of pe
 
 3. Navigate to the "Roles" tab and add PTCB_ADMINISTRATOR (Application Services Admin), EOCB Admin User (Chatbot Admin), and EOCB Client User (Chatbot user). 
 
+4. Click Return to Search and then Add a New Value. Enter "PROXY_USER" or something similar
+
+5. Go to the "Roles" tab and add PTCB_USER and EOCB Service User. Make sure to save your changes
+
 ## Step 8: Create a Permission List for Your New Bot
 
 1. Navigate to PeopleTools > Security > Permissions and Roles > Permission Lists.
 
 2. Create a new Permission List for your new bot. I named mine EXPAMCB01.
+
+3. Navigate to PeopleTools > Security > Permissions and Roles > Roles
+
+4. Search for EOCB Service User and then add the newly created EXPAMCB01 permission list
 
 ## Step 9: Set Up the Web SDK on your PSFT instance
 
@@ -206,4 +214,36 @@ Digital Assistant utilizes a Web Software Development Kit (SDK) to handle the he
 
 Now we get to do a little bit of coding! PSFT uses a language called PeopleCode (quite original if I say so myself) to express business logic. We're going to need to use that Application Designer client to actually set that up with our sample Expense retrieval. 
 
-1. Open your Windows environment. 
+1. Open your Windows environment. Execute the file pside.exe
+
+2. Login to PeopleTools using Connection Type - Oracle / Database Name - Find this on Step 3 Part 7 / User ID - VP1 or PS / Password - The User ID Password
+
+3. Click File > New and select Application Package
+
+4. Right click the app package and select "Insert App Class"
+
+5. Provide a name for your class (GetExpenseReports)
+
+6. Copy the code accompanying this guide
+
+7. Notice some of the API's and services:
+
+```
+1.	%This.ServiceAPI.insertOutputRow();
+	Allows you to setup a multi-row output
+
+2.	%This.ServiceAPI.OutputRows [x].setParameter("outputparameter", &variable);
+	This lets you set the output parameter on a key for the output
+
+3.	%This.ServiceAPI.ResultState = "Pass";
+	This indicates the result state
+
+4.	%This.ServiceAPI.setOutputParameter("outputparameter", &variable);
+	allows you to specify a single output parameter
+
+
+```
+
+## Step 11: Working with Application Services Wizard
+
+1. In the PSFT web application open navigator and go to PeopleTools > Security > Roles 

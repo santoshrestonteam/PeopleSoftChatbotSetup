@@ -21,7 +21,7 @@ Author: Charles Moore (charles.d.moore@oracle.com)
 
 3. A Windows environment to run the Application Designer for PSFT. Either Windows Server or desktop can work. 
 
-4. The sample code is included within the repository for retrieving all expenses for an employee in the FSCM module.
+4. The sample PeopleCode is included within the repository for retrieving all expenses for an employee in the FSCM module.
 
 ## If you're only trying to standup the HCM Delivered Absence Assistant skip to Step 6
 
@@ -178,7 +178,7 @@ Digital Assistant utilizes a Web Software Development Kit (SDK) to handle the he
 
 1. Use SCP to copy the ochatjs.zip file included in this repository to your PSFT instance. Remember what fully qualified path you place it in within the PSFT instance. Example: scp -i ~/priv-ssh-keyfile /local_path_to/ochatjs.zip opc@ipaddress:/path_to/location_on/PSFT
 
-2. On your local machine open an SSH session with your PSFT instance.
+2. On your local machine open an SSH session with your PSFT instance. E.g. ssh -i ~/priv-ssh-keyfile opc@ipaddress
 
 3. Navigate to your PORTAL.war file using "cd /home/psadm2/psft/pt/8.57/webserv/peoplesoft/applications/peoplesoft/PORTAL.war/".
 
@@ -271,4 +271,87 @@ Here we are actually going to setup the Wizard in the PSFT to let us use the cod
 
 ![Result States](https://github.com/restonappdev/PeopleSoftChatbotSetup/blob/master/PeoplesoftResultState.png?raw=true)
 
+12. Set the Permission List to EXPAMCB01 and continue
 
+13. NOTE: If an existing permission list isn't working with your application service, just make a new permission list and ensure role "EOCB Service User" has that list added to it as we did before
+
+14. Turn "token required" on
+
+15. Confirm everything looks good and hit Submit
+
+## Step 12: Interacting with the REST Client
+Application Services provides a simple REST service to interact with. There are a couple ways to interact with it, you can use Postman to test along with utilizing an Oracle Digital Assistant.
+
+1. Download and setup Postman if you don't already have it. This'll let you test your application services
+
+2. Navigate in PSFT to PeopleTools > Integration Broker > Integration Setup > Services
+
+3. Enable the REST Service checkbox and search for PTCB_APPL_SVC
+
+4. Choose the PTCH_APPL_SVC and in the next screen click on PTCB_APPL_SVC_GET.v1 option in Existing Operations
+
+5. Choose req verification - basic authentication (only use SSL if your PSFT environment begins with HTTPS)
+
+6. Click validate for both the URI's describe and describe/{service_id}
+
+7. For both choose "generate url" and store each
+
+8. Open Postman and create a new request
+
+9. Set the method to GET, in the url specify the "describe" get request URL you saved previously
+
+10. Under the "authorization" tab specify basic auth and provide the username and password (in this case PROXY_USER / PROXY_USER respectively)
+
+11. Click Send and you'll get a JSON response describing your application services
+
+12. You can similarly add the parameter for one of your services described by "IDForServiceURL". E.g. <URL>/expense.GetExpenseReports
+	
+13. This will return metadata for your specific service
+
+## Step 13: Test your Application Service
+
+1. Create a new request in Postman and set the method to POST
+
+2. Use the same URL for the previous requests you've made
+
+3. Under authorization tab provide the PROXY_USER credentials
+
+4. In the body tab ensure "raw" is selected and in the dropdown on the right change from "Text" to "JSON"
+
+5. Include the following JSON in the body. You can retrieve PS Token by going to your PSFT, right clicking, and selecting "Inspect". Navigate to the Application tab. On the left choose "Cookies" and select the field in the drop down. Now copy the value for PS TOKEN, ensure you get the full value. For EmplID navigate to the home page and go to My Profile. Your EmplID (Employee ID) will be listed
+
+```
+{
+	"AuthDetails": {
+		"SwitchUserContext": true,
+		"AuthOption": "PSToken",
+		"Token": "<YOUR-PS-TOKEN>”
+	},
+	"Language": {},
+	"ServiceInputParameters": {
+		"EmplId": "<YOUR-EMPLID>"
+	}
+}
+
+```
+
+6. Press the "Send" button
+
+7. You should receive a response stating Authorized and ParseStatus as "true". If Authorized is false your PS Token is expired or the EOCB Service User role needs to be applied to the user
+
+8. If all goes well you'll see a JSON array in "ServiceOutputParameters" of your expense reports
+
+## Step 14: Get the template skill
+
+1. Use SSH to connect to your PSFT instance as you did before
+
+2. Navigate to <PS_APP_HOME>/setup/chatbot, if it's not showing up . Once you're there use scp to download this template skill. E.g. scp opc@ipaddress:<PS_APP_HOME>/setup/chatbot/where/to/put
+
+## Step 15: Setup the ODA Skill
+Now you're ready to setup the ODA skill and connect it with Application Services. Please read this carefully as there are some details that will depend on your PSFT setup.
+
+1. Login to your OCI account and open the hamburger menu on the top left. Either choose Digital Assistant from this menu, or select "Platform Services" and select it from there. 
+
+2. Follow this documentation on provisioning and IDCS (Ensure you have the adequate privileges to operate this service): https://docs.oracle.com/en/cloud/paas/digital-assistant/service-administration/get-started-oda.html#GUID-AAA43B23-C55A-45F2-80F6-1EFF94FAE061
+
+3. In the ODA service click the hamburger menu on the top left > Development > Skills. 

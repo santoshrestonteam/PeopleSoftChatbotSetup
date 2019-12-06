@@ -267,7 +267,7 @@ Here we are actually going to setup the Wizard in the PSFT to let us use the cod
 
 10. Hit next, select "Yes" for multi row output, "No" for multi row input. The parameters will be as shown for getting reports
 
-
+![Parameters](https://github.com/restonappdev/PeopleSoftChatbotSetup/blob/master/Expense%20Reports%20Parameters.png?raw=true)
 
 11. Hit next and determine your result states:
 
@@ -358,7 +358,7 @@ Now you're ready to setup the ODA skill and connect it with Application Services
 
 3. In the ODA service click the hamburger menu on the top left > Development > Skills
 
-4. Click on the import skill button to import the template skill. Navigate to where you downloaded the zip file on your machine. For now don't upload the template skill, we'll make some changes using our included skill
+4. Click on the import skill button to import the template skill. Navigate to where you downloaded the zip file on your machine. Import the zip file included here
 
 5. Download nodejs on your local machine and install. See Nodejs's website for how to do this: https://nodejs.org/en/download/
 
@@ -392,6 +392,64 @@ Now you're ready to setup the ODA skill and connect it with Application Services
 
 11. Save the file and then open psft-lib > config > fscm_describe.json. Use the response you got in Postman from Step 12 part 11. This is what the custom component will use to create services for you (saves a lot of coding time!)
 
-12. Save and navigate in Terminal or Command Prompt to the same directory as package.json. Run the command "npm pack". Make sure there are no errors in the logs
+12. Save and navigate in Terminal or Command Prompt to the same directory as package.json. Run the command "npm pack". Make sure there are no errors in the logs and you'll see a .tgz file
 
-13. 
+13. Navigate in ODA to the skill you imported and then to the icon above the gear (looks like an "F"). You'll see a custom component package in there. Click "change" and upload the newly created .tgz file
+
+## Step 16: Configure your skill
+
+1. Navigate to the gear icon and then to the "Configuration" tab. Go down to custom parameters and put in parameters for PSFSCMbaseurl, PSFSCMpassword, and PSFSCMuserid
+
+2. Put each as string and enter in your proxy user's info and the url you used before as shown here: https://docs.oracle.com/cd/F20644_01/hcm92pbr31/eng/hcm/ecch/task_ImportingAndSettingUpADeliveredSkill.html?pli=ul_d29e210_ecch
+
+3. Take care to leave off the "/" at the end of the baseurl. If your connection is NOT https then use the structure http://<PSFT-PUBLIC-IP:PORT/PSIGW/RESTListeningConnector/FSCM_NVASRRNKXQ/PTCB_APPL_SVC.v1
+
+4. In the hamburger menu navigate to Development > Channels
+
+5. Create a new channel and specify "Web"
+
+6. Take note of the App Id once provisioned and activate the channel
+
+7. Route the channel to your newly created skill 
+
+## Step 17: Setup the bot in PSFT
+
+1. In PSFT navigate to Enterprise Components > Chatbot Configurations > Bot Definitions
+
+2. Add a new record for your bot. For ID, you can say something like EX_CHAT_ASST
+
+3. Once added you can specify more information, you'll need to include the App ID from your ODA channel
+
+4. Keep the defaults as shown here: https://docs.oracle.com/cd/F20644_01/hcm92pbr31/eng/hcm/ecch/task_CreatingBotDefinitions.html?pli=ul_d29e210_ecch
+
+5. Ensure you have a role configured named "Expense Chatbot Employee". If not create one in PeopleTools > Security > Permissions and Roles and ensure permission lists EOCB_CLIENT_USER and EXPAMCB01 are added.
+
+6. Add that role in the Roles section of the Maintain Bot page
+
+## Step 18: Add the widget
+
+7. In the search bar look up "Component Mapping" to get to the compo
+
+
+
+
+
+4. This needs to be done as the ODA will not be able to recognize the domain if it's not registered
+
+5. If you want to run your bot in the tester channel you'll need to add a state in the BotML (the text icon on the left, third from the top) as shown below "states". See https://fnimphiu.github.io/OracleTechExchange/#CompleteEnd-To-EndTraining for more on the development of ODA skills
+
+6. We'll be able to use the PS TOKEN to test the bot. As shown before get a current PS Token from your PSFT environment and paste for the value, ensure it's within quotes
+
+```
+  SetToken:
+    component: System.SetVariable
+    properties:
+      variable: profile.token
+      value: "<PS-TOKEN-VALUE>"
+
+      
+```
+
+7. On the top right click "Train" and then choose Trainer HT
+
+8. 

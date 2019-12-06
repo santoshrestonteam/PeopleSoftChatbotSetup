@@ -265,7 +265,9 @@ Here we are actually going to setup the Wizard in the PSFT to let us use the cod
 
 9. Service cache support: none and status: active
 
-10. Hit next, select "Yes" for multi row output, "No" for multi row input.
+10. Hit next, select "Yes" for multi row output, "No" for multi row input. The parameters will be as shown for getting reports
+
+
 
 11. Hit next and determine your result states:
 
@@ -354,4 +356,42 @@ Now you're ready to setup the ODA skill and connect it with Application Services
 
 2. Follow this documentation on provisioning and IDCS (Ensure you have the adequate privileges to operate this service): https://docs.oracle.com/en/cloud/paas/digital-assistant/service-administration/get-started-oda.html#GUID-AAA43B23-C55A-45F2-80F6-1EFF94FAE061
 
-3. In the ODA service click the hamburger menu on the top left > Development > Skills. 
+3. In the ODA service click the hamburger menu on the top left > Development > Skills
+
+4. Click on the import skill button to import the template skill. Navigate to where you downloaded the zip file on your machine. For now don't upload the template skill, we'll make some changes using our included skill
+
+5. Download nodejs on your local machine and install. See Nodejs's website for how to do this: https://nodejs.org/en/download/
+
+6. Unzip the expenses bot folder in your machine. Open the directory in a terminal or command prompt window. Ensure you're in the same directory as package.json. Run command "npm install" to install all dependencies on your machine
+
+7. Edit the file psft-lib > config > environments.js. In our case we want to update the info for our PSFT environment. If you aren't using HCM you can delete or ignore the object
+
+8. The code structure is as follows:
+
+```
+{
+    "HCM": {
+        "baseURL": "HOSTNAME:PORT/PSIGW/RESTListeningConnector/HCM_JQWCFCVPSVG/PTCB_APPL_SVC.v1/describe",
+        "user": "PROXY_USER",
+        "password": "PROXY_USER",
+        "static_describe": "../config/hcm_describe.json"
+    },
+    "FSCM": {
+        "baseURL": "HOSTNAME/PSIGW/RESTListeningConnector/FSCM_NVASRRNKXQ/PTCB_APPL_SVC.v1/describe",
+        "user": "PROXY_USER",
+        "password": "PROXY_USER",
+        "static_describe": "../config/fscm_describe.json"
+    }
+}
+
+```
+
+9. If you are running a PSFT instance without an HTTPS site name, use the public IP of your PSFT deployment and the port your PIA is running on (usually 8000) in baseURL as shown in the HCM example. If https then put the host name (e.g. https://psft-instance.com:8000
+
+10. Ensure the proxy user information is accurate
+
+11. Save the file and then open psft-lib > config > fscm_describe.json. Use the response you got in Postman from Step 12 part 11. This is what the custom component will use to create services for you (saves a lot of coding time!)
+
+12. Save and navigate in Terminal or Command Prompt to the same directory as package.json. Run the command "npm pack". Make sure there are no errors in the logs
+
+13. 

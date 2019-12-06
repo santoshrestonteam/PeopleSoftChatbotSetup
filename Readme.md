@@ -428,8 +428,25 @@ Now you're ready to setup the ODA skill and connect it with Application Services
 
 ## Step 18: Add the widget
 
-7. In the search bar look up "Component Mapping" to get to the compo
+1. In the search bar look up "Component Mapping" to get to the component mapping page
 
+2. Click Add to choose a new place to setup your chatbot widget
+
+3. Choose EX_EXP_LIST_FL in the market GBL
+
+4. Open the mapping up and then in Associated Bots choose your EX_CHAT_ASST
+
+5. Save your changes and navigate to PeopleTools > Portal > Related Content Service > Manage Related Content Service
+
+6. Choose event mapping and then Map Application Classes to Component Events
+
+7. Choose Fluid Structure Content > Fluid Pages > Travel and Expenses > My Expense Reports 
+
+8. Follow the picture below to setup the mapping. Field name: Variable / Event Name: PostBuild / Service ID: EOCB_CHATCLIENT / Processing Sequence: PostProcess
+
+![PSFTSetup](https://docs.oracle.com/cd/F20644_01/hcm92pbr31/eng/hcm/ecch/img/i53c3884en-71f1.png)
+
+9. Save and your widget will be available in your Expense Reports page
 
 
 

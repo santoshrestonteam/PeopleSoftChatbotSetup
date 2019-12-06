@@ -451,22 +451,4 @@ Now you're ready to setup the ODA skill and connect it with Application Services
 
 
 
-4. This needs to be done as the ODA will not be able to recognize the domain if it's not registered
 
-5. If you want to run your bot in the tester channel you'll need to add a state in the BotML (the text icon on the left, third from the top) as shown below "states". See https://fnimphiu.github.io/OracleTechExchange/#CompleteEnd-To-EndTraining for more on the development of ODA skills
-
-6. We'll be able to use the PS TOKEN to test the bot. As shown before get a current PS Token from your PSFT environment and paste for the value, ensure it's within quotes
-
-```
-  SetToken:
-    component: System.SetVariable
-    properties:
-      variable: profile.token
-      value: "<PS-TOKEN-VALUE>"
-
-      
-```
-
-7. On the top right click "Train" and then choose Trainer HT
-
-8. 

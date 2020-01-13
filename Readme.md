@@ -224,7 +224,7 @@ Now we get to do a little bit of coding! PSFT uses a language called PeopleCode 
 
 5. Provide a name for your class (GetExpenseReports)
 
-6. Copy the code accompanying this guide
+6. Copy the code accompanying this guide in the file ExpenseReportPeoplecode
 
 7. Notice some of the API's and services:
 

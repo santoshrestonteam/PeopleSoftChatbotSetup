@@ -1,0 +1,73 @@
+import PTCBAPPLSVCDEFN:ApplicationServiceBase;
+
+class GetExpenseReports extends PTCBAPPLSVCDEFN:ApplicationServiceBase
+   method invokeService();
+   property boolean IsError;
+   property string ErrorMsg;
+end-class;
+
+/***************************************************************************************************
+* This method is used to retrieve all expense reports for a user based on status.                  *
+***************************************************************************************************/
+
+method invokeService
+   /+ Extends/implements PTCBAPPLSVCDEFN:ApplicationServiceBase.invokeService +/
+   Local string &SheetId, &SheetStatus, &AuditOprId, &SheetName, &CurrencyCode, &Country, &EmplId, &CreationDate, &ApprovalDate, &AuditDate, &IncSheetStatus;
+   Local number &TotalAmount, &TotalReimbAmount;
+   Local SQL &SQL_Reports;
+   Local number &index;
+   
+   try
+      
+      &EmplId = %This.ServiceAPI.getInputParameter("EmplID");
+      &IncSheetStatus = %This.ServiceAPI.getInputParameter("IncSheetStatus");
+      
+      If None(&EmplId) Then
+         &EmplId = %EmployeeId;
+      End-If;
+      
+      If None(&IncSheetStatus) Then
+         &SQL_Reports = CreateSQL("SELECT SHEET_ID, SHEET_STATUS, AUDIT_OPRID, SHEET_NAME, CURRENCY_CD, COUNTRY, TOTAL_AMT, TOTAL_REIMB_AMT, CREATION_DT, APPROVAL_DT, AUDIT_DT FROM PS_EX_SHEET_HDR WHERE EMPLID = :1", &EmplId);
+      Else
+         &SQL_Reports = CreateSQL("SELECT SHEET_ID, SHEET_STATUS, AUDIT_OPRID, SHEET_NAME, CURRENCY_CD, COUNTRY, TOTAL_AMT, TOTAL_REIMB_AMT, CREATION_DT, APPROVAL_DT, AUDIT_DT FROM PS_EX_SHEET_HDR WHERE EMPLID = :1 AND SHEET_STATUS = :2", &EmplId, &IncSheetStatus);
+      End-If;
+      
+      
+      
+      
+      
+      &index = 0;
+      
+      While &SQL_Reports.Fetch(&SheetId, &SheetStatus, &AuditOprId, &SheetName, &CurrencyCode, &Country, &TotalAmount, &TotalReimbAmount, &CreationDate, &ApprovalDate, &AuditDate)
+         &index = &index + 1;
+         
+         %This.ServiceAPI.insertOutputRow();
+         %This.ServiceAPI.OutputRows [&index].setParameter("SheetId", &SheetId);
+         %This.ServiceAPI.OutputRows [&index].setParameter("SheetStatus", &SheetStatus);
+         %This.ServiceAPI.OutputRows [&index].setParameter("AuditOprId", &AuditOprId);
+         %This.ServiceAPI.OutputRows [&index].setParameter("SheetName", &SheetName);
+         %This.ServiceAPI.OutputRows [&index].setParameter("CurrencyCode", &CurrencyCode);
+         %This.ServiceAPI.OutputRows [&index].setParameter("Country", &Country);
+         %This.ServiceAPI.OutputRows [&index].setParameter("TotalAmount", &TotalAmount);
+         %This.ServiceAPI.OutputRows [&index].setParameter("TotalReimbAmount", &TotalReimbAmount);
+         %This.ServiceAPI.OutputRows [&index].setParameter("CreationDate", &CreationDate);
+         %This.ServiceAPI.OutputRows [&index].setParameter("ApprovalDate", &ApprovalDate);
+         %This.ServiceAPI.OutputRows [&index].setParameter("AuditDate", &AuditDate);
+         
+         
+      End-While;
+      
+      If &index > 0 Then
+         %This.ServiceAPI.ResultState = "Pass";
+      Else
+         %This.ServiceAPI.ResultState = "NoReports";
+      End-If;
+      
+   catch Exception &c1
+      %This.ServiceAPI.setOutputParameter("MsgOut", &c1.ToString());
+      %This.ServiceAPI.ResultState = "Fail";
+      
+   end-try;
+   
+end-method;
+

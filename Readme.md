@@ -4,11 +4,11 @@ The purpose of this guide is to provide a straight forward tutorial of how to se
 
 This guide assumes an introductory level of Linux/Windows knowledge, an Oracle Cloud Account, and basic familiarity with the OCI console.
 
-In the first iteration of this guide won't have screenshots. Later on I may put them in.
-
 Helpful links:
 
 -PSFT Chatbot Architecture Documentation: https://docs.oracle.com/cd/F20644_01/hcm92pbr31/eng/hcm/ecch/concept_UnderstandingSecurityForTheChatbotIntegrationFramework.html?pli=ul_d29e210_ecch
+
+-PeopleSoft Info (Includes lots of links to documentation and other resources): https://docs.oracle.com/cd/E52319_01/infoportal/chatbot.html
 
 Author: Charles Moore (charles.d.moore@oracle.com)
 
@@ -212,7 +212,7 @@ Digital Assistant utilizes a Web Software Development Kit (SDK) to handle the he
 
 ## Step 10: Setting Up the Application Services
 
-Now we get to do a little bit of coding! PSFT uses a language called PeopleCode (quite original if I say so myself) to express business logic. We're going to need to use that Application Designer client to actually set that up with our sample Expense retrieval. 
+Now we get to do a little bit of coding! PSFT uses a language called PeopleCode to express business logic. We're going to need to use that Application Designer client to actually set that up with our sample Expense retrieval. 
 
 1. Open your Windows environment. Execute the file pside.exe
 

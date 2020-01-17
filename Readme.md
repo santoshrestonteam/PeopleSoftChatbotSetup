@@ -345,6 +345,8 @@ Application Services provides a simple REST service to interact with. There are 
 
 ## Step 14: Get the template skill
 
+I have included the Expense Report sample skill in this document, but there's a general template skill available from PSFT as well.
+
 1. Use SSH to connect to your PSFT instance as you did before
 
 2. Navigate to <PS_APP_HOME>/setup/chatbot, if it's not showing up . Once you're there use scp to download this template skill. E.g. scp opc@ipaddress:<PS_APP_HOME>/setup/chatbot/where/to/put
@@ -398,7 +400,7 @@ Now you're ready to setup the ODA skill and connect it with Application Services
 
 ## Step 16: Configure your skill
 
-1. Navigate to the gear icon and then to the "Configuration" tab. Go down to custom parameters and put in parameters for PSFSCMbaseurl, PSFSCMpassword, and PSFSCMuserid
+1. Navigate to the gear icon and then to the "Configuration" tab. Go down to custom parameters and add parameters for PSFSCMbaseurl, PSFSCMpassword, and PSFSCMuserid
 
 2. Put each as string and enter in your proxy user's info and the url you used before as shown here: https://docs.oracle.com/cd/F20644_01/hcm92pbr31/eng/hcm/ecch/task_ImportingAndSettingUpADeliveredSkill.html?pli=ul_d29e210_ecch
 

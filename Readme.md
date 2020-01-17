@@ -29,7 +29,7 @@ Author: Charles Moore (charles.d.moore@oracle.com)
 
 Follow the guide linked below to provision your PSFT instance in OCI. It will show you how to provision everything and to SSH in to check on progress. NOTE: Try to avoid naming the instance with underscores. Additionally, naming subnets and your VCN will help keep the domain name short and sweet as it names it based off those two things. 
 
-Take a note of what version # of exactly which Oracle Database it is. ONLY THE HCM IMAGE CURRENTLY HAS A DELIVERED SKILL. Keep that in mind if you'd like to see a fully fleshed out implementation of a skill vs. this guide's sample.
+Take a note of what version # of exactly which Oracle Database it is. only the hcm image has a delivered skill as of now. Keep that in mind if you'd like to see a fully fleshed out implementation of a skill vs. this guide's sample.
 
 https://www.oracle.com/webfolder/technetwork/tutorials/obe/cloud/compute-iaas/deploy_psft_app_marketplace_oci/deploy-psft-marketplace-oracle-cloud-infrastructure.html#section6s1
 

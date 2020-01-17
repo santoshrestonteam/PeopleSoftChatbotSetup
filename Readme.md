@@ -362,7 +362,7 @@ Now you're ready to setup the ODA skill and connect it with Application Services
 
 5. Download nodejs on your local machine and install. See Nodejs's website for how to do this: https://nodejs.org/en/download/
 
-6. Unzip the expenses bot folder in your machine. Open the directory in a terminal or command prompt window. Ensure you're in the same directory as package.json. Run command "npm install" to install all dependencies on your machine
+6. Download and unzip the psftcustomcomponent.zip file. 
 
 7. Edit the file psft-lib > config > environments.js. In our case we want to update the info for our PSFT environment. If you aren't using HCM you can delete or ignore the object
 

@@ -176,7 +176,7 @@ To ensure your chatbot is secure and safe you'll need to specify a handful of pe
 
 Digital Assistant utilizes a Web Software Development Kit (SDK) to handle the heavy lifting of managing the chat widget/page in PSFT. You'll be using a Web Channel to connect with your ODA as PSFT provides the website service. Here we'll put the SDK onto PSFT and then restart our web server.
 
-1. Use SCP to copy the ochatjs.zip file included in this repository to your PSFT instance. Remember what fully qualified path you place it in within the PSFT instance. Example: scp -i ~/priv-ssh-keyfile /local_path_to/ochatjs.zip opc@ipaddress:/path_to/location_on/PSFT
+1. You can see the ochatjs.zip file from the folder <%PS_APP_HOME%>/setup/chatbot (This will usually be /opt/oracle/psft/pt/fscm_app_home/setup/ochatjs.zip if you used the marketplace image of PSFT)
 
 2. On your local machine open an SSH session with your PSFT instance. E.g. ssh -i ~/priv-ssh-keyfile opc@ipaddress
 
@@ -190,7 +190,7 @@ Digital Assistant utilizes a Web Software Development Kit (SDK) to handle the he
 
 7. Run "ls" to check if the zip file is there. 
 
-8. Run unzip ochatjs.zip to unzip the SDK files and run the following commands:
+8. Run unzip ochatjs.zip to unzip the SDK files and then run the following commands:
 
 9. Sudo –s 
 

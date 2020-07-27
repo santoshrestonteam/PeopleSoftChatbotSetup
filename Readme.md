@@ -10,7 +10,6 @@ Helpful links:
 
 -PeopleSoft Info (Includes lots of links to documentation and other resources): https://docs.oracle.com/cd/E52319_01/infoportal/chatbot.html
 
-Author: Charles Moore (charles.d.moore@oracle.com)
 
 ## Required Artifacts
 
